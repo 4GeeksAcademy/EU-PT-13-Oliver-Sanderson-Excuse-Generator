@@ -45,3 +45,27 @@ const buttonGenerate = () => {
 document
   .getElementById("newExcuseBtn")
   .addEventListener("click", buttonGenerate);
+
+const table = document.getElementById("excuseTable");
+function loopArrayToTable(arr, col) {
+  for (i in arr) {
+    const row = table.insertRow(col);
+    const cell = row.insertCell(-1);
+    cell.innerHTML = arr[i];
+  }
+}
+
+loopArrayToTable(who, 0);
+loopArrayToTable(action, 1);
+loopArrayToTable(what, 2);
+loopArrayToTable(when, 3);
+
+const row = table.insertRow(-1);
+const cell1 = row.insertCell(-1);
+const cell2 = row.insertCell(-1);
+const cell3 = row.insertCell(-1);
+const cell4 = row.insertCell(-1);
+cell1.innerHTML = "NEW CELL1";
+cell2.innerHTML = "NEW CELL2";
+cell3.innerHTML = "NEW CELL3";
+cell4.innerHTML = "NEW CELL4";

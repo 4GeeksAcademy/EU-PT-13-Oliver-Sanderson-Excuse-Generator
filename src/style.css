@@ -1,1 +1,7 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
+/* * {
+  border: 1px red dashed !important;
+} */
+
+h1 {
+  color: blue;
+}
