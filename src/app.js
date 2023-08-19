@@ -102,15 +102,34 @@ function resetTable() {
 }
 
 function addCustomExcuse(e) {
+  let changed = false;
   let customWho = document.getElementById("customWho").value;
   let customDid = document.getElementById("customDid").value;
   let customWith = document.getElementById("customWith").value;
   let customWhen = document.getElementById("customWhen").value;
-  who.push(customWho);
-  action.push(customDid);
-  what.push(customWith);
-  when.push(customWhen);
-  resetTable();
+  if (customWho) {
+    who.push(customWho);
+    changed = true;
+    document.getElementById("customWho").value = "";
+  }
+  if (customDid) {
+    action.push(customDid);
+    changed = true;
+    document.getElementById("customDid").value = "";
+  }
+  if (customWith) {
+    what.push(customWith);
+    changed = true;
+    document.getElementById("customWith").value = "";
+  }
+  if (customWhen) {
+    when.push(customWhen);
+    changed = true;
+    document.getElementById("customWhen").value = "";
+  }
+  if (changed) {
+    resetTable();
+  }
 }
 
 let customBtn = document.getElementById("customExcuseBtn");
