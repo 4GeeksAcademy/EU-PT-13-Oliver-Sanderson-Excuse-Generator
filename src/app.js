@@ -84,4 +84,34 @@ function loopArrayToTable() {
 }
 
 loopArrayToTable(whoDisplay, actionDisplay, whatDisplay, whenDisplay);
-console.log(whoDisplay);
+
+function resetTable() {
+  whoDisplay = [...who];
+  actionDisplay = [...action];
+  whatDisplay = [...what];
+  whenDisplay = [...when];
+  let tableItems = table.children[0].children;
+  console.log(tableItems);
+  console.log(tableItems.length);
+  for (let i = tableItems.length; i > 1; i--) {
+    console.log("removing item: " + tableItems[i - 1]);
+    console.log(tableItems[i - 1]);
+    tableItems[i - 1].parentNode.removeChild(tableItems[i - 1]);
+  }
+  loopArrayToTable(whoDisplay, actionDisplay, whatDisplay, whenDisplay);
+}
+
+function addCustomExcuse(e) {
+  let customWho = document.getElementById("customWho").value;
+  let customDid = document.getElementById("customDid").value;
+  let customWith = document.getElementById("customWith").value;
+  let customWhen = document.getElementById("customWhen").value;
+  who.push(customWho);
+  action.push(customDid);
+  what.push(customWith);
+  when.push(customWhen);
+  resetTable();
+}
+
+let customBtn = document.getElementById("customExcuseBtn");
+customBtn.addEventListener("click", addCustomExcuse);
