@@ -20,6 +20,10 @@ let when = [
   "during my lunch",
   "while I was praying"
 ];
+let whoDisplay = [...who];
+let actionDisplay = [...action];
+let whatDisplay = [...what];
+let whenDisplay = [...when];
 
 const randArrayIndex = arr => {
   return Math.floor(Math.random() * arr.length);
@@ -47,25 +51,37 @@ document
   .addEventListener("click", buttonGenerate);
 
 const table = document.getElementById("excuseTable");
-function loopArrayToTable(arr, col) {
-  for (i in arr) {
-    const row = table.insertRow(col);
-    const cell = row.insertCell(-1);
-    cell.innerHTML = arr[i];
+
+function loopArrayToTable() {
+  // set array lengths the same
+  let maxLength = 0;
+  for (var i = 0; i < arguments.length; ++i) {
+    if (arguments[i].length >= maxLength) {
+      maxLength = arguments[i].length;
+    }
+  }
+  for (var i = 0; i < arguments.length; ++i) {
+    if (arguments[i].length < maxLength) {
+      for (let x = arguments[i].length; x < maxLength; x++) {
+        arguments[i].push(" ");
+      }
+    }
+  }
+
+  // create table
+  let rows = [0];
+  for (var i = 0; i < arguments.length; ++i) {
+    let rowCount = 1;
+    for (item in arguments[i]) {
+      if (!rows[rowCount]) {
+        rows[rowCount] = table.insertRow(-1);
+      }
+      const cell = rows[rowCount].insertCell(-1);
+      cell.innerHTML = arguments[i][item];
+      rowCount++;
+    }
   }
 }
 
-loopArrayToTable(who, 0);
-loopArrayToTable(action, 1);
-loopArrayToTable(what, 2);
-loopArrayToTable(when, 3);
-
-const row = table.insertRow(-1);
-const cell1 = row.insertCell(-1);
-const cell2 = row.insertCell(-1);
-const cell3 = row.insertCell(-1);
-const cell4 = row.insertCell(-1);
-cell1.innerHTML = "NEW CELL1";
-cell2.innerHTML = "NEW CELL2";
-cell3.innerHTML = "NEW CELL3";
-cell4.innerHTML = "NEW CELL4";
+loopArrayToTable(whoDisplay, actionDisplay, whatDisplay, whenDisplay);
+console.log(whoDisplay);
